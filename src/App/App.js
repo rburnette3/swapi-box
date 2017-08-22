@@ -9,8 +9,9 @@ export default class App extends Component {
     super();
 
     this.state = {
-      cardList: [],
-      favoriteList: []
+      swapiList: [],
+      favoriteList: [],
+      counter: 0
     };
   }
 
@@ -20,17 +21,26 @@ export default class App extends Component {
     apiObject.fetchDataFromAPI()
       .then(response => {
         this.setState({
-          cardList: response
+          swapiList: response
         }, () => console.log('CLEAN DATA: ', this.state.cardList))
       });
   }
+ 
+    addToFavorites(swapiObj) {
+      let oldFavoriteList = [...this.state.favoriteList, swapiObj];
+      let newCount= this.state.counter +1
+      this.setState({
+        favoriteList: oldFavoriteList,
+        counter: newCount
+      })
+    }
 
   render() {
     return (
       <div className="App">
         <p>SWAPI-Box</p>
-        <Header fetchFromAPI={this.fetchFromAPI.bind(this)} />
-        <CardList />
+        <Header counter= {this.state.counter} fetchFromAPI={this.fetchFromAPI.bind(this)} />
+        <CardList swapiList={this.state.swapiList} addToFavorites={this.addToFavorites.bind(this)} />
       </div>
     );
   }

@@ -1,12 +1,17 @@
 import React from 'react';
 import Card from './Card/Card'
 
-const CardList = () => {
+const CardList = ({swapiList, addToFavorites}) => {
+  const cardInstance = swapiList.map((dataObj, i) =>
+    <Card swapiObj= {dataObj}
+      addToFavorites= {addToFavorites}
+      key={dataObj.name} />
+    )
 
   return(
     <div>
-      I am the card list
-      <Card />
+      {cardInstance}
+
     </div>
   )
 

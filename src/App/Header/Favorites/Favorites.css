@@ -1,0 +1,19 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.favorites-btn {
+  background-color: #292325;
+  border-radius: 10px;
+  border: 2px solid #FFB950;
+  color: #FFB950;
+  display: flex;
+  font-size: 16px;
+  justify-content: center;
+  height: 50px;
+  width: 150px;
+  margin: auto;
+
+}
