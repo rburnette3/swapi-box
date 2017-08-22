@@ -15,8 +15,14 @@ export default class App extends Component {
   }
 
   fetchFromAPI(type) {
+    let cleanedApiData;
     let apiObject = new API(type);
-    apiObject.fetchDataFromAPI();
+    apiObject.fetchDataFromAPI()
+      .then(response => {
+        this.setState({
+          cardList: response
+        }, () => console.log('CLEAN DATA: ', this.state.cardList))
+      });
   }
 
   render() {
