@@ -16,13 +16,14 @@ export default class App extends Component {
 
   fetchFromAPI(type) {
     let apiObject = new API(type);
+    apiObject.fetchDataFromAPI();
   }
 
   render() {
     return (
       <div className="App">
         <p>SWAPI-Box</p>
-        <Header />
+        <Header fetchFromAPI={this.fetchFromAPI.bind(this)} />
         <CardList />
       </div>
     );

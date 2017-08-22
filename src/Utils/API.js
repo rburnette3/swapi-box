@@ -5,11 +5,14 @@ export default class API {
   }
 
   fetchDataFromAPI() {
-    fetch(``)
+    fetch(`https://swapi.co/api/${this.type}`)
       .then(result => result.json())
-      .then(parsedResult => cleanData(parsedResult))
+      .then(parsedResult => this.cleanData(parsedResult))
       .catch(error => console.log('ERROR FROM API'));
+  }
 
+  cleanData(parsedResult) {
+    console.log('DATA FROM API: ', parsedResult);
   }
 
 }
