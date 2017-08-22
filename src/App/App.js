@@ -25,7 +25,7 @@ export default class App extends Component {
         }, () => console.log('CLEAN DATA: ', this.state.cardList))
       });
   }
- 
+
     addToFavorites(swapiObj) {
       let oldFavoriteList = [...this.state.favoriteList, swapiObj];
       let newCount= this.state.counter +1
@@ -35,11 +35,19 @@ export default class App extends Component {
       })
     }
 
+    displayFavorites() {
+      // let newFavoriteList = [...this.state.favoriteList]
+
+      this.setState({
+        swapiList: this.state.favoriteList
+      })
+    }
+
   render() {
     return (
       <div className="App">
         <p>SWAPI-Box</p>
-        <Header counter= {this.state.counter} fetchFromAPI={this.fetchFromAPI.bind(this)} />
+        <Header counter= {this.state.counter} fetchFromAPI={this.fetchFromAPI.bind(this)} displayFavorites= {this.displayFavorites.bind(this)}/>
         <CardList swapiList={this.state.swapiList} addToFavorites={this.addToFavorites.bind(this)} />
       </div>
     );

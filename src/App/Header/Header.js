@@ -2,11 +2,12 @@ import React from 'react'
 import Favorites from './Favorites/Favorites'
 import './Header.css';
 
-const Header = ({fetchFromAPI, counter}) => {
+const Header = ({fetchFromAPI, counter, displayFavorites}) => {
 
   return(
     <div>
-      <Favorites counter= {counter} />
+      <Favorites counter= {counter}
+      displayFavorites= {displayFavorites} />
       <div className='header-btn-container'>
         <button className="header-btn people-btn"
                 onClick={() => {fetchFromAPI('people')}}>People</button>
