@@ -23,15 +23,25 @@ export default class App extends Component {
   }
 
   fetchFromAPI(type) {
-    let cleanedApiData;
-    let apiObject = new API(type);
-    apiObject.fetchDataFromAPI()
+
+    this.setState({
+      swapiList: undefined
+    }, () => {
+
+      let cleanedApiData;
+      let apiObject = new API(type);
+
+      apiObject.fetchDataFromAPI()
       .then(result => {
         console.log('what is full array result:', result);
         this.setState({
           swapiList: result
         })
       })
+
+    })
+
+    // console.log('Pending Result:', pendingResult.PromiseStatus);
     }
 
     isSwapiInFavs(element) {
@@ -77,7 +87,15 @@ export default class App extends Component {
         <Crawl />
         <p>SWAPI-Box</p>
         <Header counter= {this.state.counter} fetchFromAPI={this.fetchFromAPI.bind(this)} displayFavorites= {this.displayFavorites.bind(this)}/>
-        <CardList swapiList={this.state.swapiList} addToFavorites={this.addToFavorites.bind(this)} />
+
+        {this.state.swapiList === undefined &&
+          <div>ITS LIT BRO</div>
+        }
+        
+        {this.state.swapiList !== undefined &&
+          <CardList swapiList={this.state.swapiList} addToFavorites={this.addToFavorites.bind(this)} />
+        }
+
       </div>
     );
   }
