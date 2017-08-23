@@ -6,9 +6,10 @@ const Header = ({fetchFromAPI, counter, displayFavorites}) => {
 
   return(
     <div>
+      // <div className='swapi-logo'></div>
       <Favorites counter= {counter}
       displayFavorites= {displayFavorites} />
-      <div className='swapi-logo'></div>
+
       <div className='header-btn-container'>
         <button className="header-btn people-btn"
                 onClick={() => {fetchFromAPI('people')}}>People</button>
