@@ -9,7 +9,7 @@ export default class API {
     return fetch(`https://swapi.co/api/${this.type}/?page=${pageNum}`)
       .then(result => result.json())
       .then(jsonResult => {
-        if (jsonResult.next) {
+        if (jsonResult.next && false) {
           // console.log('FIRST WUT:', jsonResult);
           this.bigArray = [...this.bigArray, ...jsonResult.results]
           return this.actualFetch(pageNum + 1)
@@ -122,5 +122,5 @@ export default class API {
     }) // end 0
 
   } // end function
-  
+
 } // end class

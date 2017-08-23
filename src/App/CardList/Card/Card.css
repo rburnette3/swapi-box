@@ -1,0 +1,45 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.display-card {
+  background-color: rgba(255, 248, 231, .1);
+  height: 300px;
+  width: 250px;
+  margin: 20px;
+  border: 2px solid #FFB950;
+  border-radius: 10px;
+  color: #FFB950;
+  display:flex;
+  flex-direction: column;
+}
+
+.card-name {
+  font-size: 24px;
+  margin: 20px 0 10px;
+  text-align: center;
+}
+
+.card-fav-btn {
+  cursor: pointer;
+  height: 30px;
+  width: 50%;
+  border-radius: 30px;
+  border: none;
+  margin: 10px auto;
+  background-color: #000;
+  border: 2px solid #FFB950;
+  
+  color: #FFB950;
+
+}
+
+
+
+li {
+  list-style: none;
+  text-align: center;
+  padding: 10px 0;
+}
