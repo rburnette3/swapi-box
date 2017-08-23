@@ -28,23 +28,55 @@ export default class API {
 
     this.actualFetch(1).then(result => {
 
-      let arrayOfPromises;
+      let arrayOfHomeworldPromises;
+      let arrayOfSpeciesPromises;
 
       if (this.type === 'people') {
-        arrayOfPromises = this.bigArray.map(item => {
+
+        arrayOfHomeworldPromises = this.bigArray.map(item => {
           return fetch(item.homeworld)
             .then(result => result.json())
+            .catch(err => console.log('Error with homeworld lookup: ', err))
         })
+        console.log('how many homeworlds:', arrayOfHomeworldPromises.length);
 
-        let finalArray = Promise.all(arrayOfPromises)
-          .then(result => {
-            console.log('what is promise result', result);
+        arrayOfSpeciesPromises = this.bigArray.map(item => {
+          return fetch(item.species[0])
+            .then(result => result.json())
+            .catch(err => console.log('Error with species lookup: ', err))
+        })
+        console.log('how many species:', arrayOfSpeciesPromises .length);
+
+        let finalArray = Promise.all(arrayOfHomeworldPromises)
+          .then(result => { // start 1 // result is an array of the homeworlds
+            // console.log('what is promise result', result);
             return result.map((homeworld, i) => {
-              return Object.assign({}, this.bigArray[i], homeworld)
-            })
-          })
+              return Object.assign(
+                {Type: 'people'},
+                {Name: this.bigArray[i].name},
+                {Homeworld: homeworld.name},
+                {Population: homeworld.population}
+              ) // end object.assign
+            }) // end map
+          }) // end 1
+          .then(firstJoinResult => { // start 2 // result is array of people + homeworlds
+            // console.log('result with Homeworld:', result);
+
+            return Promise.all(arrayOfSpeciesPromises)
+              .then(result => { // start 3 // result is array of species
+                return result.map((species, i) => {
+                  return Object.assign(
+                    firstJoinResult[i],
+                    {Species: species ? species.name : 'unknown '}
+                  ) // end object.assign
+                }) // end map
+              }) // end 3
+              .then(result => {
+                console.log('result with Homeworld and Species:', result);
+              })
+          }) // end 2
           .then(result => {
-            console.log('UHHUH:', result);
+            console.log('result with Homeworld and Species2222:', result);
           })
 
           console.log('what is final array:', finalArray);
