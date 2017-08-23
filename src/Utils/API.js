@@ -78,32 +78,47 @@ export default class API {
       } // ends poeple if statement
       else if (this.type === 'planets') {
 
-        let arrayOfPlanetPromises;
         let arrayOfPlanetResidentPromises;
+        let arrayOfResidentPromises;
 
-        arrayOfPlanetPromises = this.bigArray.map(item => {
+        arrayOfPlanetResidentPromises = this.bigArray.map(item => {
           let residentLookupArray = item.residents;
 
-          arrayOfPlanetResidentPromises = residentLookupArray.map(resident => {
+          arrayOfResidentPromises = residentLookupArray.map(resident => {
             return fetch(resident)
               .then(result => result.json())
               .catch(err => console.log('Error with planet-resident lookup: ', err))
           })
 
-          return Promise.all(arrayOfPlanetResidentPromises)
+          return Promise.all(arrayOfResidentPromises)
             .then(result => {
-              return result.map((resident, i) => {
-                return Object.assign(
-                  {Type: 'planets'},
-                  {Name: this.bigArray[i].name},
-                  {Homeworld: homeworld.name},
-                  {Population: homeworld.population}
-                ) // end object.assign
-              }) // end map
+              return result.map(resident => {
+                return resident.name
+              }) // end map (inner)
             })
+            // .then(result => {
+            //   console.log('planet result 1:', result);
+            // })
 
 
-        })
+        }) // end map (outer)
+        console.log('whats in here:', arrayOfPlanetResidentPromises);
+
+        return Promise.all(arrayOfPlanetResidentPromises)
+          .then(result => {
+            return result.map((residents, i) => {
+              // console.log('getting there:', planet);
+              return Object.assign(
+                {Type: 'planets'},
+                {Name: this.bigArray[i].name},
+                {Terrain: this.bigArray[i].terrain},
+                {Population: this.bigArray[i].population},
+                {Climate: this.bigArray[i].climate},
+                {Residents: residents}
+              ) // end object.assign
+            }) // end map
+          })
+
         // console.log('how many homeworlds:', arrayOfHomeworldPromises.length);
 
 
@@ -113,4 +128,6 @@ export default class API {
     // .then(result => {
     //   console.log('final result:', result);
     //   return result;
- 
+
+  } // end function
+} // end class
