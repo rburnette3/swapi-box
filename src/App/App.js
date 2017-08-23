@@ -45,12 +45,12 @@ export default class App extends Component {
     }
 
     isSwapiInFavs(element) {
-      return this === element.name;
+      return this === element.Name;
     }
 
     addToFavorites(swapiObj) {
 
-      const indexOfSwapiObj = this.state.favoriteList.findIndex(this.isSwapiInFavs, swapiObj.name);
+      const indexOfSwapiObj = this.state.favoriteList.findIndex(this.isSwapiInFavs, swapiObj.Name);
 
       let oldFavoriteList;
       let newCount;
@@ -91,7 +91,7 @@ export default class App extends Component {
         {this.state.swapiList === undefined &&
           <div>ITS LIT BRO</div>
         }
-        
+
         {this.state.swapiList !== undefined &&
           <CardList swapiList={this.state.swapiList} addToFavorites={this.addToFavorites.bind(this)} />
         }
