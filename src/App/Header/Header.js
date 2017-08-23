@@ -8,7 +8,7 @@ const Header = ({fetchFromAPI, counter, displayFavorites}) => {
     <div>
       <Favorites counter= {counter}
       displayFavorites= {displayFavorites} />
-      <div className='swapi-logo' sr
+      <div className='swapi-logo'></div>
       <div className='header-btn-container'>
         <button className="header-btn people-btn"
                 onClick={() => {fetchFromAPI('people')}}>People</button>
