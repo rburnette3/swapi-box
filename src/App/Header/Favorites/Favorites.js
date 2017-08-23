@@ -1,21 +1,14 @@
-import React, {Component} from 'react'
+import React from 'react';
+import './Favorites.css';
 
-export default class Favorites extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      counter: 0
-    }
-  }
-
-  render() {
-    // put onClick on the P tag
-    return(
-      <div className="favorites-counter">
-        <p className="favorites-btn">Favorites <span>{this.state.counter}</span></p>
-      </div>
-    )
-
-  }
+const Favorites = ({counter, displayFavorites}) => {
+  return(
+    <div className="favorites-counter">
+      <button className="favorites-btn"
+      onClick=
+      {displayFavorites} >Favorites <span>{counter}</span></button>
+    </div>
+  )
 }
+
+  export default Favorites;

@@ -1,13 +1,14 @@
 import React from 'react'
 
-const Card = () => {
-
+const Card = ({swapiObj, addToFavorites}) => {
+  
   return(
-    <div>
-      i am a card
-    </div>
+    <article>
+      <h2 className='card-name'>
+      {swapiObj.name}</h2>
+      <button onClick={() => {addToFavorites(swapiObj)}}>favorite</button>
+    </article>
   )
-
 }
 
 export default Card;
