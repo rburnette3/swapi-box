@@ -1,34 +1,44 @@
 import React from 'react';
 import './Crawl.css';
+import helper from '../../Utils/helper'
 
 
-const Crawl = () => {
-    return(
+const Crawl = ({crawlObj}) => {
 
-<div>
-  <section className="crawl-container">
-    <div className="fade"></div>
+  return(
 
-    <section className="star-wars">
+  <div>
 
-      <div className="crawl">
+    { Object.keys(crawlObj).length === 0 &&
+      <div>ERROR LOADING CRAWL</div>
+    }
 
-        <div className="title">
-          <p>Episode IV</p>
-          <h1>A New Hope</h1>
-        </div>
+    { Object.keys(crawlObj).length > 0 &&
 
-        <p>It is a period of civil war. Rebel spaceships, striking from a hidden base, have won their first victory against the evil Galactic Empire.</p>
-        <p>During the battle, Rebel spies managed to steal secret plans to the Empire’s ultimate weapon, the DEATH STAR, an armored space station with enough power to destroy an entire planet.</p>
-        <p>Pursued by the Empire’s sinister agents, Princess Leia races home aboard her starship, custodian of the stolen plans that can save her people and restore freedom to the galaxy…</p>
+      <section className="crawl-container">
+        <div className="fade"></div>
 
-      </div>
+        <section className="star-wars">
 
-    </section>
-  </section>
-</div>
+          <div className="crawl">
 
-)
+            <div className="title">
+              <p>{crawlObj.roman}</p>
+              <h1>{crawlObj.title}</h1>
+              <h3>Released: {crawlObj.year}</h3>
+            </div>
+
+            <p>{crawlObj.crawl}</p>
+
+          </div>
+
+        </section>
+      </section>
+    }
+  </div>
+
+  )
+
 }
 
 export default Crawl;

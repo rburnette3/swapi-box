@@ -4,6 +4,7 @@ import Header from './Header/Header';
 import CardList from './CardList/CardList';
 import API from '../Utils/API';
 import Crawl from './Crawl/Crawl';
+import helper from '../Utils/helper'
 
 //TODO:
   // In the API, we have 3 if statements
@@ -18,8 +19,32 @@ export default class App extends Component {
     this.state = {
       swapiList: [],
       favoriteList: [],
-      counter: 0
+      counter: 0,
+      crawlObj: {}
     };
+
+    this.buildCrawlObj().then(result => {
+      this.setState({
+        crawlObj: result
+      })
+    })
+
+  }
+
+  buildCrawlObj() {
+    let randomMovieNum = Math.floor(Math.random() * (7 - 1 + 1) + 1);
+    let helperFuncs = new helper();
+    return fetch(`https://swapi.co/api/films/${randomMovieNum}/`)
+      .then(result => result.json())
+      .then(result => {
+        return Object.assign( {},
+                                  {roman: 'Episode ' + helperFuncs.romanize(result.episode_id).toString()},
+                                  {title: result.title},
+                                  {year: new Date(result.release_date).getFullYear()},
+                                  {crawl: result.opening_crawl}
+                                )
+
+      })
   }
 
   fetchFromAPI(type) {
@@ -84,7 +109,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <Crawl />
+        <Crawl crawlObj={this.state.crawlObj} />
         <p>SWAPI-Box</p>
         <Header counter= {this.state.counter} fetchFromAPI={this.fetchFromAPI.bind(this)} displayFavorites= {this.displayFavorites.bind(this)}/>
 
