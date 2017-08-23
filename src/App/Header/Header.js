@@ -21,4 +21,5 @@ const Header = ({fetchFromAPI, counter, displayFavorites}) => {
   )
 }
 
+
 export default Header;

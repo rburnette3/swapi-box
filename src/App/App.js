@@ -5,6 +5,12 @@ import CardList from './CardList/CardList';
 import API from '../Utils/API';
 import Crawl from './Crawl/Crawl';
 
+//TODO:
+  // In the API, we have 3 if statements
+    // break these out into seperate functions
+    // do they need to each return a promise then?
+    // actually they may be already..so minimal refactor
+
 export default class App extends Component {
   constructor() {
     super();
@@ -20,12 +26,13 @@ export default class App extends Component {
     let cleanedApiData;
     let apiObject = new API(type);
     apiObject.fetchDataFromAPI()
-      .then(response => {
+      .then(result => {
+        console.log('what is full array result:', result);
         this.setState({
-          swapiList: response
+          swapiList: result
         })
-      });
-  }
+      })
+    }
 
     isSwapiInFavs(element) {
       return this === element.name;
