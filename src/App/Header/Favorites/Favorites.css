@@ -9,11 +9,14 @@
   border-radius: 10px;
   border: 2px solid #FFB950;
   color: #FFB950;
-  display: flex;
   font-size: 16px;
-  justify-content: center;
   height: 50px;
+  justify-content: center;
+  position: absolute;
+  right: 45px;
+  top: 50px;
   width: 150px;
-  margin: auto;
+  z-index: 1;
+
 
 }

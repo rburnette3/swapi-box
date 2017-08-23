@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Card = ({swapiObj, addToFavorites}) => {
-  console.log(swapiObj);
+  
   return(
     <article>
       <h2 className='card-name'>
