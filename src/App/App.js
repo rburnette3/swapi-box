@@ -4,6 +4,12 @@ import Header from './Header/Header';
 import CardList from './CardList/CardList';
 import API from '../Utils/API';
 
+//TODO:
+  // In the API, we have 3 if statements
+    // break these out into seperate functions
+    // do they need to each return a promise then?
+    // actually they may be already..so minimal refactor
+
 export default class App extends Component {
   constructor() {
     super();
@@ -24,12 +30,6 @@ export default class App extends Component {
           cardList: result
         })
       })
-    // apiObject.fetchDataFromAPI()
-    //   .then(response => {
-    //     this.setState({
-    //       cardList: response
-    //     }, () => console.log('CLEAN DATA: ', this.state.cardList))
-    //   });
   }
 
   render() {

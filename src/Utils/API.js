@@ -44,7 +44,6 @@ export default class API {
 
         return Promise.all(arrayOfHomeworldPromises)
           .then(result => { // start 1 // result is an array of the homeworlds
-            // console.log('what is promise result', result);
             return result.map((homeworld, i) => {
               return Object.assign(
                 {Type: 'people'},
@@ -55,8 +54,6 @@ export default class API {
             }) // end map
           }) // end 1
           .then(firstJoinResult => { // start 2 // result is array of people + homeworlds
-            // console.log('result with Homeworld:', result);
-
             return Promise.all(arrayOfSpeciesPromises)
               .then(result => { // start 3 // result is array of species
                 return result.map((species, i) => {
@@ -66,15 +63,7 @@ export default class API {
                   ) // end object.assign
                 }) // end map
               }) // end 3
-              // .then(result => {
-              //   console.log('result with Homeworld and Species:', result);
-              //   return result;
-              // })
           }) // end 2
-          // .then(result => {
-          //   console.log('result with Homeworld and Species2222:', result);
-          //   return result;
-          // })
       } // ends poeple if statement
       else if (this.type === 'planets') {
 
@@ -96,17 +85,12 @@ export default class API {
                 return resident.name
               }) // end map (inner)
             })
-            // .then(result => {
-            //   console.log('planet result 1:', result);
-            // })
-
 
         }) // end map (outer)
 
         return Promise.all(arrayOfPlanetResidentPromises)
           .then(result => {
             return result.map((residents, i) => {
-              // console.log('getting there:', planet);
               return Object.assign(
                 {Type: 'planets'},
                 {Name: this.bigArray[i].name},
@@ -117,9 +101,6 @@ export default class API {
               ) // end object.assign
             }) // end map
           })
-
-        // console.log('how many homeworlds:', arrayOfHomeworldPromises.length);
-
 
       } // ends planets if statement
       else if (this.type === 'vehicles') {
@@ -136,13 +117,10 @@ export default class API {
           }) // end map
           resolve(vehicleArray)
         })
-        
+
       } // ends vehicles if statement
-      // return result;
     }) // end 0
-    // .then(result => {
-    //   console.log('final result:', result);
-    //   return result;
 
   } // end function
+  
 } // end class
