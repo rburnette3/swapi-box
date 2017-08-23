@@ -26,12 +26,12 @@ export default class API {
     let fallback = 0;
     let finalDataSet = [];
 
-    this.actualFetch(1).then(result => {
+    return this.actualFetch(1).then(result => { // start 0
 
       let arrayOfHomeworldPromises;
       let arrayOfSpeciesPromises;
 
-      if (this.type === 'people') {
+      // if (this.type === 'people') {
 
         arrayOfHomeworldPromises = this.bigArray.map(item => {
           return fetch(item.homeworld)
@@ -47,7 +47,7 @@ export default class API {
         })
         console.log('how many species:', arrayOfSpeciesPromises .length);
 
-        let finalArray = Promise.all(arrayOfHomeworldPromises)
+        return Promise.all(arrayOfHomeworldPromises)
           .then(result => { // start 1 // result is an array of the homeworlds
             // console.log('what is promise result', result);
             return result.map((homeworld, i) => {
@@ -71,20 +71,22 @@ export default class API {
                   ) // end object.assign
                 }) // end map
               }) // end 3
-              .then(result => {
-                console.log('result with Homeworld and Species:', result);
-              })
+              // .then(result => {
+              //   console.log('result with Homeworld and Species:', result);
+              //   return result;
+              // })
           }) // end 2
-          .then(result => {
-            console.log('result with Homeworld and Species2222:', result);
-          })
-
-          console.log('what is final array:', finalArray);
-
-      }
-
-      console.log('big array:', this.bigArray);
-    })
+          // .then(result => {
+          //   console.log('result with Homeworld and Species2222:', result);
+          //   return result;
+          // })
+//      // } // ends poeple if statement
+      // return result;
+    }) // end 0
+    // .then(result => {
+    //   console.log('final result:', result);
+    //   return result;
+    // })
 
     // console.log('WUT:', wut);
     //

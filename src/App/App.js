@@ -17,7 +17,13 @@ export default class App extends Component {
   fetchFromAPI(type) {
     let cleanedApiData;
     let apiObject = new API(type);
-    let fullArray = apiObject.fetchDataFromAPI()
+    apiObject.fetchDataFromAPI()
+      .then(result => {
+        console.log('what is full array result:', result);
+        this.setState({
+          cardList: result
+        })
+      })
     // apiObject.fetchDataFromAPI()
     //   .then(response => {
     //     this.setState({
