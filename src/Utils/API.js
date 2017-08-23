@@ -102,7 +102,6 @@ export default class API {
 
 
         }) // end map (outer)
-        console.log('whats in here:', arrayOfPlanetResidentPromises);
 
         return Promise.all(arrayOfPlanetResidentPromises)
           .then(result => {
@@ -123,6 +122,22 @@ export default class API {
 
 
       } // ends planets if statement
+      else if (this.type === 'vehicles') {
+
+        return new Promise((resolve, reject) => {
+          let vehicleArray = this.bigArray.map(vehicle => {
+            return Object.assign(
+              {Type: 'vehicles'},
+              {Name: vehicle.name},
+              {Model: vehicle.model},
+              {Class: vehicle.vehicle_class},
+              {NumOfPassengers: vehicle.passengers},
+            ) // end object.assign
+          }) // end map
+          resolve(vehicleArray)
+        })
+        
+      } // ends vehicles if statement
       // return result;
     }) // end 0
     // .then(result => {
