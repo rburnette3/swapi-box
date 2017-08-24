@@ -1,5 +1,6 @@
 import React from 'react';
 import './Favorites.css';
+import PropTypes from 'prop-types';
 
 const Favorites = ({counter, displayFavorites}) => {
   return(
@@ -12,6 +13,11 @@ const Favorites = ({counter, displayFavorites}) => {
       </div>
     </div>
   )
+}
+
+Favorites.propTypes = {
+  counter: PropTypes.number,
+  displayFavorites: PropTypes.func
 }
 
   export default Favorites;

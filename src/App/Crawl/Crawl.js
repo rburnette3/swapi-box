@@ -1,6 +1,7 @@
 import React from 'react';
 import './Crawl.css';
-import helper from '../../Utils/helper'
+import helper from '../../Utils/helper';
+import PropTypes from 'prop-types';
 
 
 const Crawl = ({crawlObj}) => {
@@ -39,6 +40,11 @@ const Crawl = ({crawlObj}) => {
 
   )
 
+}
+
+Crawl.propTypes = {
+  swapiObj: PropTypes.object,
+  addToFavorites: PropTypes.func
 }
 
 export default Crawl;
