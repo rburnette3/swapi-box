@@ -5,6 +5,8 @@ import App from './App';
 import fetchMock from 'fetch-mock';
 import MockCrawl from '../Utils/MockCrawl'
 import MockAPIPeople1 from '../Utils/MockAPIPeople1'
+import Crawl from './Crawl/Crawl'
+import Header from './Header/Header'
 
 describe('App Component', () => {
   let wrapper;
@@ -16,24 +18,19 @@ describe('App Component', () => {
     fetchMock.restore();
   })
 
-  // beforeEach(() => {
-  //   mockFn = jest.fn();
-  //   wrapper = shallow(<App />);
-  // });
-
-  test('state obj for crawl should be set correctly', async () => {
-
-    // console.log('STUFF:', MockCrawl);
+  beforeEach(function () {
     fetchMock.get('https://swapi.co/api/films/7/', {
       status: 200, // we're mocking the response, so essentially we're saying we got back a 200 status
       body: MockCrawl
     })
+  })
+
+  test('state obj for crawl should be set correctly', async () => {
 
     expect(fetchMock._matchedCalls.length).toEqual(0);
     expect(fetchMock.routes[0].method).toEqual('GET')
     expect(fetchMock.routes[0].response.body).toEqual(MockCrawl)
 
-    // mockFn = jest.fn();
     wrapper = mount(<App />);
 
     expect(fetchMock._matchedCalls.length).toEqual(1)
@@ -41,39 +38,108 @@ describe('App Component', () => {
 
     await dummySetTimeoutPromise();
 
-    // expect(Object.keys(wrapper.state('crawlObj')).length).toEqual(4);
-
     await fetchMock.flush()
     .then(result => {
-      // console.log('result:', result);
-      console.log('what is state:', wrapper.state('crawlObj'));
       expect(Object.keys(wrapper.state('crawlObj')).length).toEqual(4);
-      // expect(wrapper.find('.error').length).toEqual(0);
     })
 
   });
 
+  test('state should start out empty', () => {
+    wrapper = mount(<App />);
 
-  // test('fetch from API', async () => {
-  //
-  //   fetchMock.get('https://swapi.co/api/people/?page=1', {
-  //     status: 200, // we're mocking the response, so essentially we're saying we got back a 200 status
-  //     body: MockAPIPeople1
-  //   })
-  //
-  //   expect(fetchMock._matchedCalls.length).toEqual(0);
-  //
-  //   // mockFn = jest.fn();
-  //   wrapper = mount(<App />);
-  //
-  //   expect(fetchMock._matchedCalls.length).toEqual(1)
-  //   expect(fetchMock.called()).toEqual(true);
-  //
-  //   wrapper.instance().fetchFromAPI()
-  //
-  //
-  //   await dummySetTimeoutPromise();
-  //
-  // })
+    expect(wrapper.state().swapiList.length).toEqual(0)
+    expect(wrapper.state().favoriteList.length).toEqual(0)
+    expect(wrapper.state().counter).toEqual(0)
+    expect(wrapper.state().isOnFavs).toEqual(false)
+  })
+
+  test('add to favorites function should add a favorite', () => {
+    wrapper = mount(<App />);
+
+    let dummyObj = {
+      "Type": "people",
+      "Name": "C-3PO",
+      "Homeworld": "Tatooine",
+      "Population": "200000",
+      "Species": "Droid"
+    }
+
+    expect(wrapper.state().favoriteList.length).toEqual(0)
+    expect(wrapper.state().counter).toEqual(0)
+    wrapper.instance().addToFavorites(dummyObj)
+    expect(wrapper.state().favoriteList.length).toEqual(1)
+    expect(wrapper.state().counter).toEqual(1)
+  })
+
+  test('add to favorites of same obj should remove it', () => {
+    wrapper = mount(<App />);
+
+    let dummyObj = {
+      "Type": "people",
+      "Name": "C-3PO",
+      "Homeworld": "Tatooine",
+      "Population": "200000",
+      "Species": "Droid"
+    }
+
+    expect(wrapper.state().favoriteList.length).toEqual(0)
+    expect(wrapper.state().counter).toEqual(0)
+
+    wrapper.instance().addToFavorites(dummyObj)
+    expect(wrapper.state().favoriteList.length).toEqual(1)
+    expect(wrapper.state().counter).toEqual(1)
+
+    wrapper.instance().addToFavorites(dummyObj)
+    expect(wrapper.state().favoriteList.length).toEqual(0)
+    expect(wrapper.state().counter).toEqual(0)
+  })
+
+  test('display favorites function should set the state isOnFavs', () => {
+    wrapper = mount(<App />);
+
+    expect(wrapper.state().isOnFavs).toEqual(false)
+    wrapper.instance().displayFavorites();
+    expect(wrapper.state().isOnFavs).toEqual(true)
+
+  });
+
+  test('should contain valid html controls', () => {
+    wrapper = mount(<App />);
+
+    expect(wrapper.find('p').length).toEqual(1);
+  });
+
+  test('should contain valid components', () => {
+    wrapper = mount(<App />);
+
+    expect(wrapper.find(Crawl).length).toEqual(1);
+    expect(wrapper.find(Header).length).toEqual(1);
+  });
+
+  test('should contain no favs msg when no favs exist', () => {
+    wrapper = mount(<App />);
+
+    expect(wrapper.state().favoriteList.length).toEqual(0)
+    expect(wrapper.state().counter).toEqual(0)
+
+    expect(wrapper.find('.empty-fav-msg').length).toEqual(0);
+
+    wrapper.instance().displayFavorites();
+
+    expect(wrapper.state().isOnFavs).toEqual(true)
+    expect(wrapper.state().favoriteList.length).toEqual(0)
+    expect(wrapper.state().counter).toEqual(0)
+
+    expect(wrapper.find('.empty-fav-msg').length).toEqual(1);
+  });
+
 
 })
+
+
+
+
+
+
+//
