@@ -1,16 +1,15 @@
 body {
   width: 100%;
   height: 100%;
-  background-image: url(http://wallpapercave.com/wp/bV3WiYh.jpg);
-
 }
 
 .crawl-container {
   background-image: url(http://wallpapercave.com/wp/bV3WiYh.jpg);
-  height: 40vh;
+  height: 30vh;
   overflow: hidden;
   position: fixed;
   width: 100%;
+  z-index: -500;
 }
 
 .fade {

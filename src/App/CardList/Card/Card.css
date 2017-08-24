@@ -5,7 +5,11 @@
 }
 
 .i-am-fav {
-  background: red !important;
+  background: #FFB950 !important;
+  border-color: red;
+  box-shadow: inset 0 0 0 3px #000;
+  box-shadow: 0 0 20px red;
+  color: #000 !important;
 }
 
 .display-card {
@@ -20,8 +24,13 @@
   margin: 20px;
   width: 250px;
 }
-.display-card:hover { transition: all .2s ease-in-out; }
-.display-card:hover { transform: scale(1.1); }
+.display-card:hover {
+  transition: all .2s ease-in-out;
+}
+
+.display-card:hover {
+  transform: scale(1.1);
+}
 
 .card-name {
   font-size: 24px;
