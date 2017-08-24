@@ -116,6 +116,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
+        <section className='background'></section>
         <Crawl crawlObj={this.state.crawlObj} />
         <p>SWAPI-Box</p>
         <Header counter= {this.state.counter} fetchFromAPI={this.fetchFromAPI.bind(this)} displayFavorites= {this.displayFavorites.bind(this)}/>
@@ -125,6 +126,7 @@ export default class App extends Component {
               <div className='gif-container'><img className="gif" src={ Giphy }/>
               <h2 className='loading-text'>Loading...</h2>
               </div>
+
           </div>}
 
         {(this.state.swapiList !== undefined && !this.state.isOnFavs) &&
