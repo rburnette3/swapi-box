@@ -22,28 +22,40 @@
   color: #FFB950;
   display: flex;
   font-size: 16px;
-  justify-content: center;
-  height: 50px;
-  width: 150px;
   margin: auto;
   outline: none;
+  height: 50px;
+  justify-content: center;
+  width: 150px;
 }
 
 .header-btn:hover {
 	background: #FFB950;
-	color: #000;
   border-color: red;
   box-shadow: 0 0 40px red;
+  color: #000;
 }
 
 .btn-active {
   background: #FFB950!important;
-  color: #000;
   border-color: red;
   box-shadow: 0 0 40px red;
+  color: #000;
 }
 
-.swapi-logo {
-  height: 100px;
-  width: 100px;
+/*.swapi-logo {
+  height: 200px;
+  width: 200px;
+}*/
+
+@media screen and (max-width: 640px) {
+  .header-btn {
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .header-btn {
+    width: 80px;
+  }
 }

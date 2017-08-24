@@ -6,16 +6,15 @@
 
 .display-card {
   background-color: rgba(255, 248, 231, .1);
-  height: 300px;
-  width: 250px;
-  margin: 20px;
   border: 1px solid #FFB950;
   border-radius: 10px;
+  box-shadow: 0 0 20px #FFB950;
   color: #FFB950;
   display:flex;
   flex-direction: column;
-  border-color: #FFB950;
-  box-shadow: 0 0 20px #FFB950;
+  height: 300px;
+  margin: 20px;
+  width: 250px;
 }
 
 .card-name {
@@ -25,34 +24,30 @@
 }
 
 .card-fav-btn {
+  background-color: #000;
+  border: none;
+  border-radius: 30px;
+  border: 2px solid #FFB950;
+  box-shadow: 4px 4px 4px #red;
+  color: #FFB950;
   cursor: pointer;
   height: 30px;
-  width: 50%;
-  border-radius: 30px;
-  border: none;
   margin: 10px auto;
-  background-color: #000;
-  border: 2px solid #FFB950;
   outline: none;
-  color: #FFB950;
-  box-shadow: 4px 4px 4px #red;
-
+  width: 50%;
 }
 
 .card-fav-btn:hover {
 	background: #FFB950;
-	color: #000;
-	box-shadow: inset 0 0 0 3px #000;
-  cursor: pointer;
   border-color: red;
+  box-shadow: inset 0 0 0 3px #000;
   box-shadow: 0 0 20px red;
+	color: #000;
+  cursor: pointer;
 }
-
-
-
 
 li {
   list-style: none;
-  text-align: center;
   padding: 10px 0;
+  text-align: center;
 }
