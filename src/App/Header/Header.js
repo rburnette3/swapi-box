@@ -6,7 +6,6 @@ const Header = ({fetchFromAPI, counter, displayFavorites}) => {
 
   return(
     <div>
-      // <div className='swapi-logo'></div>
       <Favorites counter= {counter}
       displayFavorites= {displayFavorites} />
 

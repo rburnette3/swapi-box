@@ -24,7 +24,6 @@ export default class App extends Component {
       crawlObj: {},
       isOnFavs: false
     };
-
     this.buildCrawlObj().then(result => {
       this.setState({
         crawlObj: result
@@ -35,6 +34,7 @@ export default class App extends Component {
 
   buildCrawlObj() {
     let randomMovieNum = Math.floor(Math.random() * (7 - 1 + 1) + 1);
+    randomMovieNum = 7; //JEST TEST
     let helperFuncs = new helper();
     return fetch(`https://swapi.co/api/films/${randomMovieNum}/`)
       .then(result => result.json())
@@ -108,6 +108,9 @@ export default class App extends Component {
     // }
 
     displayFavorites() {
+      let allTheBtns = document.querySelectorAll('.header-btn')
+      allTheBtns.forEach(btn => btn.classList.remove('btn-active'))
+
       this.setState({
         swapiList: this.state.favoriteList,
         isOnFavs: true
