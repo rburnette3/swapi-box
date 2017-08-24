@@ -12,6 +12,8 @@ const CardList = ({swapiList, addToFavorites, favoriteList}) => {
       key={`${dataObj.Name}-${i}`} />
     )
 
+    console.log('CARD LIST:', swapiList);
+
   return(
     <div>
       <section  className='card-container'>
