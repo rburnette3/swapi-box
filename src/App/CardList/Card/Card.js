@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 
 const toggleFavClass = (e) => {
-  console.log('CLICK WORKED', e);
   e.target.classList.toggle('i-am-fav')
 }
 
@@ -13,8 +12,9 @@ const Card = ({swapiObj, addToFavorites, favoriteList}) => {
 
   let residentsArray;
 
-  let amIaFavorite =
-
+  const itemInArray = favoriteList.find(obj => {
+    return obj.Name === swapiObj.Name;
+  })
 
   if (swapiObj.Type === 'planets') {
     residentsArray = swapiObj.Residents.map((resident, i) => {
@@ -27,7 +27,7 @@ const Card = ({swapiObj, addToFavorites, favoriteList}) => {
     {swapiObj.Type === 'people' &&
     <article className='display-card card-people'>
       <h2 className='card-name'>{swapiObj.Name}</h2>
-        <button className='card-fav-btn' onClick={(e) => {addToFavorites(swapiObj); toggleFavClass(e)}}>favorite
+        <button className={itemInArray ? 'card-fav-btn i-am-fav' : 'card-fav-btn'} onClick={(e) => {addToFavorites(swapiObj); toggleFavClass(e)}}>favorite
         </button>
           <ul>
             <li>HomeWorld: {swapiObj.Homeworld}</li>
@@ -39,7 +39,7 @@ const Card = ({swapiObj, addToFavorites, favoriteList}) => {
   {swapiObj.Type === 'planets' &&
     <article className='display-card card-planet'>
       <h2 className='card-name'>{swapiObj.Name}</h2>
-        <button className='card-fav-btn' onClick={() => {addToFavorites(swapiObj), this.toggleFavClass.bind(this)}}>favorite
+        <button className={itemInArray ? 'card-fav-btn i-am-fav' : 'card-fav-btn'} onClick={(e) => {addToFavorites(swapiObj); toggleFavClass(e)}}>favorite
         </button>
           <ul>
             <li>Terrain: {swapiObj.Terrain}</li>
@@ -52,7 +52,7 @@ const Card = ({swapiObj, addToFavorites, favoriteList}) => {
   {swapiObj.Type === 'vehicles' &&
     <article className='display-card card-vehicle'>
       <h2 className='card-name'>{swapiObj.Name}</h2>
-        <button className='card-fav-btn' onClick={() => {addToFavorites(swapiObj), this.toggleFavClass.bind(this)}}>favorite
+        <button className={itemInArray ? 'card-fav-btn i-am-fav' : 'card-fav-btn'} onClick={(e) => {addToFavorites(swapiObj), toggleFavClass(e)}}>favorite
         </button>
           <ul>
             <li>Model: {swapiObj.Model}</li>
@@ -65,7 +65,9 @@ const Card = ({swapiObj, addToFavorites, favoriteList}) => {
 }
 
 Card.propTypes = {
-
+  swapiObj: PropTypes.object,
+  addToFavorites: PropTypes.func,
+  favoriteList: PropTypes.array
 }
 
 export default Card;

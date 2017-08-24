@@ -66,7 +66,7 @@ export default class App extends Component {
 
       apiObject.fetchDataFromAPI()
       .then(result => {
-        console.log('what is full array result:', result);
+        // console.log('what is full array result:', result);
         this.setState({
           swapiList: result
         })

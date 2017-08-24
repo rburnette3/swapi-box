@@ -56,7 +56,7 @@ export default class API {
           .then(firstJoinResult => { // start 2 // result is array of people + homeworlds
             return Promise.all(arrayOfSpeciesPromises)
               .then(result => { // start 3 // result is array of species
-                console.log('STUFFFF:', result);
+                // console.log('STUFFFF:', result);
                 return result.map((species, i) => {
                   return Object.assign(
                     firstJoinResult[i],
