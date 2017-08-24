@@ -12,11 +12,11 @@ const Header = ({fetchFromAPI, counter, displayFavorites}) => {
 
       <div className='header-btn-container'>
         <button className="header-btn people-btn"
-                onClick={() => {fetchFromAPI('people')}}>People</button>
+                onClick={(e) => {fetchFromAPI(e, 'people')}}>People</button>
         <button className="header-btn planets-btn"
-                onClick={() => {fetchFromAPI('planets')}}>Planets</button>
+                onClick={(e) => {fetchFromAPI(e, 'planets')}}>Planets</button>
         <button className="header-btn vehicles-btn"
-                onClick={() => {fetchFromAPI('vehicles')}}>Vehicles</button>
+                onClick={(e) => {fetchFromAPI(e, 'vehicles')}}>Vehicles</button>
       </div>
     </div>
   )
