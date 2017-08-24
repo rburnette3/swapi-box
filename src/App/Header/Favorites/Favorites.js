@@ -4,10 +4,13 @@ import PropTypes from 'prop-types';
 
 const Favorites = ({counter, displayFavorites}) => {
   return(
-    <div className="favorites-counter">
-      <button className="favorites-btn"
-      onClick=
-      {displayFavorites} >Favorites <span>{counter}</span></button>
+    <div className='favorites-container'>
+      <div className='swapi-logo'></div>
+      <div className="favorites-counter">
+        <button className="favorites-btn"
+        onClick=
+        {displayFavorites} >Favorites <span>{counter}</span></button>
+      </div>
     </div>
   )
 }

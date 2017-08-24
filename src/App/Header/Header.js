@@ -1,8 +1,7 @@
 import React from 'react'
 import Favorites from './Favorites/Favorites'
 import './Header.css';
-import PropTypes from 'prop-types'
-import Swapilogo from './swapi-logo.svg';
+import PropTypes from 'prop-types';
 
 const Header = ({fetchFromAPI, counter, displayFavorites}) => {
 
