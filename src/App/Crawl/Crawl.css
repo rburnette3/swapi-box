@@ -8,7 +8,7 @@ body {
 .crawl-container {
   width: 100%;
   height: 40vh;
-  position: relative;
+  position: fixed;
   overflow: hidden;
   background-color: #000;
 }

@@ -9,7 +9,10 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 25px;
-  
+  position: fixed;
+  top:300px;
+  width: 100%;
+  z-index: 1;
   }
 
 .header-btn {
@@ -29,8 +32,15 @@
 .header-btn:hover {
 	background: #FFB950;
 	color: #000;
-	box-shadow: inset 0 0 0 3px #000;
+  border-color: red;
+  box-shadow: 0 0 40px red;
 }
+
+.btn-active {
+  background: #FFB950!important;
+  color: #000;
+}
+
 
 /*.swapi-logo {
   height: 200px;

@@ -123,8 +123,8 @@ export default class App extends Component {
 
         {this.state.swapiList === undefined &&
           <div>
-            <h2 className='loading-text'>Loading...</h2>
               <div className='gif-container'><img className="gif" src={ Giphy }/>
+              <h2 className='loading-text'>Loading...</h2>
               </div>
           </div>}
 
