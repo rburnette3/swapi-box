@@ -10,10 +10,10 @@ export default class API {
       .then(result => result.json())
       .then(jsonResult => {
         if (jsonResult.next && false) {
-          // console.log('FIRST WUT:', jsonResult);
           this.bigArray = [...this.bigArray, ...jsonResult.results]
           return this.actualFetch(pageNum + 1)
         } else {
+          console.log('FIRST WUT:', jsonResult);
           this.bigArray = [...this.bigArray, ...jsonResult.results]
         }
     })

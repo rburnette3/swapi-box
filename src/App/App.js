@@ -50,7 +50,7 @@ export default class App extends Component {
   }
 
   fetchFromAPI(e, type) {
-
+    console.log('WHAT IS E?', e);
     let allTheBtns = document.querySelectorAll('.header-btn')
     allTheBtns.forEach(btn => btn.classList.remove('btn-active'))
     e.target.classList.toggle('btn-active')
