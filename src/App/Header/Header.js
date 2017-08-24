@@ -1,14 +1,13 @@
 import React from 'react'
 import Favorites from './Favorites/Favorites'
 import './Header.css';
+import PropTypes from 'prop-types'
 import Swapilogo from './swapi-logo.svg';
 
 const Header = ({fetchFromAPI, counter, displayFavorites}) => {
 
   return(
     <div>
-      <div className='logo-container'>
-      <img className='swapi-logo' src="{ Swapilogo }" alt=""/></div>
       <Favorites counter= {counter}
       displayFavorites= {displayFavorites} />
       <div className='fixed-heading'>
@@ -25,5 +24,11 @@ const Header = ({fetchFromAPI, counter, displayFavorites}) => {
   )
 }
 
+
+Header.propTypes = {
+  counter: PropTypes.number,
+  fetchFromAPI: PropTypes.func,
+  displayFavorites: PropTypes.func
+}
 
 export default Header;
