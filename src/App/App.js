@@ -4,7 +4,8 @@ import Header from './Header/Header';
 import CardList from './CardList/CardList';
 import API from '../Utils/API';
 import Crawl from './Crawl/Crawl';
-import helper from '../Utils/helper'
+import helper from '../Utils/helper';
+import Giphy from './loading-giphy.gif';
 
 //TODO:
   // In the API, we have 3 if statements
@@ -114,8 +115,11 @@ export default class App extends Component {
         <Header counter= {this.state.counter} fetchFromAPI={this.fetchFromAPI.bind(this)} displayFavorites= {this.displayFavorites.bind(this)}/>
 
         {this.state.swapiList === undefined &&
-          <div>ITS LIT BRO</div>
-        }
+          <div>
+            <h2 className='loading-text'>Loading...</h2>
+              <div className='gif-container'><img className="gif" src={ Giphy }/>
+              </div>
+          </div>}
 
         {this.state.swapiList !== undefined &&
           <CardList swapiList={this.state.swapiList} addToFavorites={this.addToFavorites.bind(this)} />
