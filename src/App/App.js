@@ -102,13 +102,10 @@ export default class App extends Component {
         counter: newCount
       })
     }
-    //
-    // removeFromFavorites(swapiObj) {
-    //   let removedCard = this.
-    //
-    // }
 
     displayFavorites() {
+      let allTheBtns = document.querySelectorAll('.header-btn')
+      allTheBtns.forEach(btn => btn.classList.remove('btn-active'))
       this.setState({
         swapiList: this.state.favoriteList,
         isOnFavs: true
