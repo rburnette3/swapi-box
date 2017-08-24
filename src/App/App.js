@@ -128,11 +128,11 @@ export default class App extends Component {
           </div>}
 
         {(this.state.swapiList !== undefined && !this.state.isOnFavs) &&
-          <CardList swapiList={this.state.swapiList} addToFavorites={this.addToFavorites.bind(this)} />
+          <CardList swapiList={this.state.swapiList} favoriteList={this.state.favoriteList} addToFavorites={this.addToFavorites.bind(this)} />
         }
 
         {(this.state.isOnFavs && this.state.favoriteList.length > 0) &&
-          <CardList swapiList={this.state.swapiList} addToFavorites={this.addToFavorites.bind(this)} />
+          <CardList swapiList={this.state.swapiList} favoriteList={this.state.favoriteList} addToFavorites={this.addToFavorites.bind(this)} />
         }
 
         {this.state.isOnFavs && this.state.favoriteList.length === 0 &&

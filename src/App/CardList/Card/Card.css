@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+.i-am-fav {
+  background: red !important;
+}
+
 .display-card {
   background-color: rgba(255, 248, 231, .1);
   border: 1px solid #FFB950;
