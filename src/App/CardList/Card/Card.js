@@ -36,7 +36,7 @@ const Card = ({swapiObj, addToFavorites}) => {
             <li>Terrain: {swapiObj.Terrain}</li>
             <li>Population: {swapiObj.Population}</li>
             <li>Climate: {swapiObj.Climate}</li>
-            <li>Residents: {residentsArray.length > 0 ? residentsArray : 'None'}</li>
+            <li className='res-text'>Residents: {residentsArray.length > 0 ? residentsArray : 'None'}</li>
           </ul>
     </article>}
 
