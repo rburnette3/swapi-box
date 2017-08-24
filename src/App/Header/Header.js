@@ -1,6 +1,7 @@
 import React from 'react'
 import Favorites from './Favorites/Favorites'
 import './Header.css';
+import PropTypes from 'prop-types'
 
 const Header = ({fetchFromAPI, counter, displayFavorites}) => {
 
@@ -21,5 +22,11 @@ const Header = ({fetchFromAPI, counter, displayFavorites}) => {
   )
 }
 
+
+Header.propTypes = {
+  counter: PropTypes.number,
+  fetchFromAPI: PropTypes.func,
+  displayFavorites: PropTypes.func
+}
 
 export default Header;

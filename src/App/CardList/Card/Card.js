@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 import './Card.css';
+import PropTypes from 'prop-types';
 
 
 const Card = ({swapiObj, addToFavorites}) => {
@@ -44,6 +45,10 @@ const Card = ({swapiObj, addToFavorites}) => {
     </article>}
   </div>
   )
+}
+
+Card.propTypes = {
+  
 }
 
 export default Card;

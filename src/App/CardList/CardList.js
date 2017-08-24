@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './Card/Card';
 import './CardList.css';
+import PropTypes from 'prop-types';
 
 const CardList = ({swapiList, addToFavorites}) => {
   // console.log('SWAPI LIST:', swapiList);
@@ -18,6 +19,11 @@ const CardList = ({swapiList, addToFavorites}) => {
     </div>
   )
 
+}
+
+CardList.PropTypes = {
+  swapiList: PropTypes.arrayOf(PropTypes.object),
+  addToFavorites: PropTypes.func
 }
 
 export default CardList;
