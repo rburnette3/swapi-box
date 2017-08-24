@@ -4,13 +4,16 @@ import {shallow, mount} from 'enzyme'
 import App from './App';
 import fetchMock from 'fetch-mock';
 import MockCrawl from '../Utils/MockCrawl'
+import MockAPIPeople from '../Utils/MockAPIPeople'
 
 describe('App Component', () => {
   let wrapper;
   let mockFn;
+  const dummySetTimeoutPromise = () => new Promise(resolve => setTimeout(() => resolve(), 10));
 
   afterEach(function () {
-    fetchMock.restore()
+    expect(fetchMock.calls().unmatched).toEqual([]);
+    fetchMock.restore();
   })
 
   // beforeEach(() => {
@@ -18,7 +21,8 @@ describe('App Component', () => {
   //   wrapper = shallow(<App />);
   // });
 
-  test('should exist', () => {
+  test('state obj for crawl should be set correctly', async () => {
+
     // console.log('STUFF:', MockCrawl);
     fetchMock.get('https://swapi.co/api/films/7/', {
       status: 200, // we're mocking the response, so essentially we're saying we got back a 200 status
@@ -32,26 +36,44 @@ describe('App Component', () => {
     // mockFn = jest.fn();
     wrapper = mount(<App />);
 
-    // let stateCrawlObjKeys = Object.keys(wrapper.state().crawlObj)
-
-
-    // console.log('WUT:', stateCrawlObjKeys);
-    // expect(stateCrawlObjKeys.length).toEqual(0);
-
     expect(fetchMock._matchedCalls.length).toEqual(1)
     expect(fetchMock.called()).toEqual(true);
 
-    fetchMock.flush()
-    .then(() => {
-      expect(Object.keys(wrapper.state('crawlObj')).length).toEqual(10);
+    await dummySetTimeoutPromise();
+
+    // expect(Object.keys(wrapper.state('crawlObj')).length).toEqual(4);
+
+    await fetchMock.flush()
+    .then(result => {
+      // console.log('result:', result);
+      console.log('what is state:', wrapper.state('crawlObj'));
+      expect(Object.keys(wrapper.state('crawlObj')).length).toEqual(4);
       // expect(wrapper.find('.error').length).toEqual(0);
     })
 
   });
 
-  // test('state should start empty', () => {
-  //   expect(wrapper.state().swapiList.length).toEqual(0);
-  //   expect(wrapper.state().favoriteList.length).toEqual(0);
-  // });
+
+  test('fetch from API', async () => {
+
+    fetchMock.get('https://swapi.co/api/people/', {
+      status: 200, // we're mocking the response, so essentially we're saying we got back a 200 status
+      body: MockAPIPeople
+    })
+
+    expect(fetchMock._matchedCalls.length).toEqual(0);
+    expect(fetchMock.routes[0].method).toEqual('GET')
+    expect(fetchMock.routes[0].response.body).toEqual(MockCrawl)
+
+    // mockFn = jest.fn();
+    wrapper = mount(<App />);
+
+    expect(fetchMock._matchedCalls.length).toEqual(1)
+    expect(fetchMock.called()).toEqual(true);
+
+    await dummySetTimeoutPromise();
+
+    wrapper.instance().addDistrictToShowDown('COLORADO', false)
+  })
 
 })
