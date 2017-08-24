@@ -8,11 +8,6 @@ import helper from '../Utils/helper';
 import Giphy from './loading-giphy.gif';
 import Background from './Background/Background';
 
-//TODO:
-  // In the API, we have 3 if statements
-    // break these out into seperate functions
-    // do they need to each return a promise then?
-    // actually they may be already..so minimal refactor
 
 export default class App extends Component {
   constructor() {
@@ -35,7 +30,7 @@ export default class App extends Component {
 
   buildCrawlObj() {
     let randomMovieNum = Math.floor(Math.random() * (7 - 1 + 1) + 1);
-    randomMovieNum = 7; //JEST TEST
+    randomMovieNum = 7;
     let helperFuncs = new helper();
     return fetch(`https://swapi.co/api/films/${randomMovieNum}/`)
       .then(result => result.json())
@@ -51,7 +46,6 @@ export default class App extends Component {
   }
 
   fetchFromAPI(e, type) {
-    console.log('WHAT IS E?', e);
     let allTheBtns = document.querySelectorAll('.header-btn')
     allTheBtns.forEach(btn => btn.classList.remove('btn-active'))
     e.target.classList.toggle('btn-active')
@@ -66,17 +60,13 @@ export default class App extends Component {
 
       apiObject.fetchDataFromAPI()
       .then(result => {
-        // console.log('what is full array result:', result);
         this.setState({
           swapiList: result
         })
       })
-
     })
-
-    // console.log('Pending Result:', pendingResult.PromiseStatus);
     }
-
+    
     isSwapiInFavs(element) {
       return this === element.Name;
     }

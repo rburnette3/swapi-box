@@ -3,7 +3,6 @@ import './Card.css';
 import PropTypes from 'prop-types';
 
 
-
 const toggleFavClass = (e) => {
   e.target.classList.toggle('i-am-fav')
 }

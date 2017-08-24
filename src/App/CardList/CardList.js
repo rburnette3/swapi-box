@@ -4,7 +4,7 @@ import './CardList.css';
 import PropTypes from 'prop-types';
 
 const CardList = ({swapiList, addToFavorites, favoriteList}) => {
-  // console.log('SWAPI LIST:', swapiList);
+
   const cardInstance = swapiList.map((dataObj, i) =>
     <Card swapiObj= {dataObj}
       addToFavorites= {addToFavorites}
