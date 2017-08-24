@@ -72,7 +72,7 @@ export default class App extends Component {
     }
 
     addToFavorites(swapiObj) {
-
+      console.log('TESTAAAA:', swapiObj);
       const indexOfSwapiObj = this.state.favoriteList.findIndex(this.isSwapiInFavs, swapiObj.Name);
 
       let oldFavoriteList;
