@@ -47,6 +47,7 @@
 	color: #000;
   border-color: red;
   box-shadow: 0 0 40px red;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 640px) {

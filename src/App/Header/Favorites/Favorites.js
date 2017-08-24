@@ -20,4 +20,4 @@ Favorites.propTypes = {
   displayFavorites: PropTypes.func
 }
 
-  export default Favorites;
+export default Favorites;

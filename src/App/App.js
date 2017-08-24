@@ -6,7 +6,6 @@ import API from '../Utils/API';
 import Crawl from './Crawl/Crawl';
 import helper from '../Utils/helper';
 import Giphy from './loading-giphy.gif';
-import Background from './Background/Background';
 
 
 export default class App extends Component {
@@ -30,17 +29,17 @@ export default class App extends Component {
 
   buildCrawlObj() {
     let randomMovieNum = Math.floor(Math.random() * (7 - 1 + 1) + 1);
-    randomMovieNum = 7;
+    // randomMovieNum = 7; // UNCOMMENT FOR TESTING...HOW DO YOU TEST RANDOM STUFF
     let helperFuncs = new helper();
     return fetch(`https://swapi.co/api/films/${randomMovieNum}/`)
       .then(result => result.json())
       .then(result => {
         return Object.assign( {},
-                                  {roman: 'Episode ' + helperFuncs.romanize(result.episode_id).toString()},
-                                  {title: result.title},
-                                  {year: new Date(result.release_date).getFullYear()},
-                                  {crawl: result.opening_crawl}
-                                )
+                              {roman: 'Episode ' + helperFuncs.romanize(result.episode_id).toString()},
+                              {title: result.title},
+                              {year: new Date(result.release_date).getFullYear()},
+                              {crawl: result.opening_crawl}
+                            )
 
       })
   }
@@ -65,43 +64,42 @@ export default class App extends Component {
         })
       })
     })
-    }
-    
-    isSwapiInFavs(element) {
-      return this === element.Name;
-    }
+  }
 
-    addToFavorites(swapiObj) {
-      console.log('TESTAAAA:', swapiObj);
-      const indexOfSwapiObj = this.state.favoriteList.findIndex(this.isSwapiInFavs, swapiObj.Name);
+  isSwapiInFavs(element) {
+    return this === element.Name;
+  }
 
-      let oldFavoriteList;
-      let newCount;
+  addToFavorites(swapiObj) {
+    const indexOfSwapiObj = this.state.favoriteList.findIndex(this.isSwapiInFavs, swapiObj.Name);
 
-      if (indexOfSwapiObj < 0) {
-        oldFavoriteList = [...this.state.favoriteList, swapiObj];
-        newCount= this.state.counter +1
-      } else {
-        oldFavoriteList = this.state.favoriteList.slice();
-        oldFavoriteList.splice(indexOfSwapiObj, 1)
-        newCount = this.state.counter - 1
-      }
+    let oldFavoriteList;
+    let newCount;
 
-      this.setState({
-        favoriteList: oldFavoriteList,
-        counter: newCount
-      })
+    if (indexOfSwapiObj < 0) {
+      oldFavoriteList = [...this.state.favoriteList, swapiObj];
+      newCount= this.state.counter +1
+    } else {
+      oldFavoriteList = this.state.favoriteList.slice();
+      oldFavoriteList.splice(indexOfSwapiObj, 1)
+      newCount = this.state.counter - 1
     }
 
-    displayFavorites() {
-      let allTheBtns = document.querySelectorAll('.header-btn')
-      allTheBtns.forEach(btn => btn.classList.remove('btn-active'))
+    this.setState({
+      favoriteList: oldFavoriteList,
+      counter: newCount
+    })
+  }
 
-      this.setState({
-        swapiList: this.state.favoriteList,
-        isOnFavs: true
-      })
-    }
+  displayFavorites() {
+    let allTheBtns = document.querySelectorAll('.header-btn')
+    allTheBtns.forEach(btn => btn.classList.remove('btn-active'))
+
+    this.setState({
+      swapiList: this.state.favoriteList,
+      isOnFavs: true
+    })
+  }
 
   render() {
     return (

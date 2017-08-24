@@ -9,11 +9,10 @@ export default class API {
     return fetch(`https://swapi.co/api/${this.type}/?page=${pageNum}`)
       .then(result => result.json())
       .then(jsonResult => {
-        if (jsonResult.next && false) {
+        if (jsonResult.next) { // add && false if you want to limit to 10 results
           this.bigArray = [...this.bigArray, ...jsonResult.results]
           return this.actualFetch(pageNum + 1)
         } else {
-          console.log('FIRST WUT:', jsonResult);
           this.bigArray = [...this.bigArray, ...jsonResult.results]
         }
     })
@@ -56,7 +55,6 @@ export default class API {
           .then(firstJoinResult => { // start 2 // result is array of people + homeworlds
             return Promise.all(arrayOfSpeciesPromises)
               .then(result => { // start 3 // result is array of species
-                // console.log('STUFFFF:', result);
                 return result.map((species, i) => {
                   return Object.assign(
                     firstJoinResult[i],

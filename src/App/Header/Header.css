@@ -34,6 +34,7 @@
   border-color: red;
   box-shadow: 0 0 40px red;
   color: #000;
+  cursor: pointer;
 }
 
 .btn-active {
