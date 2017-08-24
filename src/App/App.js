@@ -21,7 +21,8 @@ export default class App extends Component {
       swapiList: [],
       favoriteList: [],
       counter: 0,
-      crawlObj: {}
+      crawlObj: {},
+      isOnFavs: false
     };
 
     this.buildCrawlObj().then(result => {
@@ -48,10 +49,15 @@ export default class App extends Component {
       })
   }
 
-  fetchFromAPI(type) {
+  fetchFromAPI(e, type) {
+
+    let allTheBtns = document.querySelectorAll('.header-btn')
+    allTheBtns.forEach(btn => btn.classList.remove('btn-active'))
+    e.target.classList.toggle('btn-active')
 
     this.setState({
-      swapiList: undefined
+      swapiList: undefined,
+      isOnFavs: false
     }, () => {
 
       let cleanedApiData;
@@ -103,7 +109,8 @@ export default class App extends Component {
 
     displayFavorites() {
       this.setState({
-        swapiList: this.state.favoriteList
+        swapiList: this.state.favoriteList,
+        isOnFavs: true
       })
     }
 
@@ -121,8 +128,16 @@ export default class App extends Component {
               </div>
           </div>}
 
-        {this.state.swapiList !== undefined &&
+        {(this.state.swapiList !== undefined && !this.state.isOnFavs) &&
           <CardList swapiList={this.state.swapiList} addToFavorites={this.addToFavorites.bind(this)} />
+        }
+
+        {(this.state.isOnFavs && this.state.favoriteList.length > 0) &&
+          <CardList swapiList={this.state.swapiList} addToFavorites={this.addToFavorites.bind(this)} />
+        }
+
+        {this.state.isOnFavs && this.state.favoriteList.length === 0 &&
+          <div className="white-me">No Favorites Exist Yet</div>
         }
 
       </div>
