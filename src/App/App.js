@@ -6,6 +6,7 @@ import API from '../Utils/API';
 import Crawl from './Crawl/Crawl';
 import helper from '../Utils/helper';
 import Giphy from './loading-giphy.gif';
+import Background from './Background/Background';
 
 //TODO:
   // In the API, we have 3 if statements
@@ -101,13 +102,10 @@ export default class App extends Component {
         counter: newCount
       })
     }
-    //
-    // removeFromFavorites(swapiObj) {
-    //   let removedCard = this.
-    //
-    // }
 
     displayFavorites() {
+      let allTheBtns = document.querySelectorAll('.header-btn')
+      allTheBtns.forEach(btn => btn.classList.remove('btn-active'))
       this.setState({
         swapiList: this.state.favoriteList,
         isOnFavs: true
@@ -123,8 +121,8 @@ export default class App extends Component {
 
         {this.state.swapiList === undefined &&
           <div>
-            <h2 className='loading-text'>Loading...</h2>
               <div className='gif-container'><img className="gif" src={ Giphy }/>
+              <h2 className='loading-text'>Loading...</h2>
               </div>
           </div>}
 
@@ -137,7 +135,7 @@ export default class App extends Component {
         }
 
         {this.state.isOnFavs && this.state.favoriteList.length === 0 &&
-          <div className="white-me">No Favorites Exist Yet</div>
+          <div className="empty-fav-msg">No Favorites You have...</div>
         }
 
       </div>

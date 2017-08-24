@@ -9,11 +9,13 @@
   height: 300px;
   width: 250px;
   margin: 20px;
-  border: 2px solid #FFB950;
+  border: 1px solid #FFB950;
   border-radius: 10px;
   color: #FFB950;
   display:flex;
   flex-direction: column;
+  border-color: #FFB950;
+  box-shadow: 0 0 20px #FFB950;
 }
 
 .card-name {
@@ -33,6 +35,7 @@
   border: 2px solid #FFB950;
   outline: none;
   color: #FFB950;
+  box-shadow: 4px 4px 4px #red;
 
 }
 
@@ -41,6 +44,8 @@
 	color: #000;
 	box-shadow: inset 0 0 0 3px #000;
   cursor: pointer;
+  border-color: red;
+  box-shadow: 0 0 20px red;
 }
 
 

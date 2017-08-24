@@ -14,7 +14,7 @@ const Card = ({swapiObj, addToFavorites}) => {
           <ul>
             <li>HomeWorld: {swapiObj.Homeworld}</li>
             <li>Species: {swapiObj.Species}</li>
-            <li>Population: {swapiObj.Population}</li>
+            <li>Home Population: {swapiObj.Population}</li>
           </ul>
     </article>}
 
