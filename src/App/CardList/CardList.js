@@ -3,11 +3,12 @@ import Card from './Card/Card';
 import './CardList.css';
 import PropTypes from 'prop-types';
 
-const CardList = ({swapiList, addToFavorites}) => {
+const CardList = ({swapiList, addToFavorites, favoriteList}) => {
   // console.log('SWAPI LIST:', swapiList);
   const cardInstance = swapiList.map((dataObj, i) =>
     <Card swapiObj= {dataObj}
       addToFavorites= {addToFavorites}
+      favoriteList={favoriteList}
       key={`${dataObj.Name}-${i}`} />
     )
 
@@ -23,6 +24,7 @@ const CardList = ({swapiList, addToFavorites}) => {
 
 CardList.PropTypes = {
   swapiList: PropTypes.arrayOf(PropTypes.object),
+  favoriteList: PropTypes.arrayOf(PropTypes.object),
   addToFavorites: PropTypes.func
 }
 
