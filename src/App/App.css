@@ -4,8 +4,14 @@
   padding: 0;
 }
 
-.white-me {
-  color: white;
+.empty-fav-msg {
+  color: #FFB950;
+  position:relative;
+  top: 500px;
+  z-index: 100;
+  text-align: center;
+  font-size: 72px;
+
 }
 
 .btn-active {

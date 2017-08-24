@@ -6,6 +6,7 @@ import API from '../Utils/API';
 import Crawl from './Crawl/Crawl';
 import helper from '../Utils/helper';
 import Giphy from './loading-giphy.gif';
+import Background from './Background/Background';
 
 //TODO:
   // In the API, we have 3 if statements
@@ -137,7 +138,7 @@ export default class App extends Component {
         }
 
         {this.state.isOnFavs && this.state.favoriteList.length === 0 &&
-          <div className="white-me">No Favorites Exist Yet</div>
+          <div className="empty-fav-msg">No Favorites You have...</div>
         }
 
       </div>

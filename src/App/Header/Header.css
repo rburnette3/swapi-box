@@ -39,15 +39,11 @@
 .btn-active {
   background: #FFB950!important;
   color: #000;
+  border-color: red;
+  box-shadow: 0 0 40px red;
 }
 
-
-/*.swapi-logo {
-  height: 200px;
-  width: 200px;
-  border: 2px solid red;
-  background-image: url('./swapi-logo.svg');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: 1000px;
-}*/
+.swapi-logo {
+  height: 100px;
+  width: 100px;
+}
