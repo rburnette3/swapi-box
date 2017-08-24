@@ -5,6 +5,14 @@ import PropTypes from 'prop-types';
 
 const Card = ({swapiObj, addToFavorites}) => {
 
+  let residentsArray;
+
+  if (swapiObj.Type === 'planets') {
+    residentsArray = swapiObj.Residents.map((resident, i) => {
+      return <span key={Date.now().toString() + i.toString()}>{resident}</span>
+    })
+  }
+
   return(
   <div>
     {swapiObj.Type === 'people' &&
@@ -28,7 +36,7 @@ const Card = ({swapiObj, addToFavorites}) => {
             <li>Terrain: {swapiObj.Terrain}</li>
             <li>Population: {swapiObj.Population}</li>
             <li>Climate: {swapiObj.Climate}</li>
-            <li>Residents: array of residents</li>
+            <li>Residents: {residentsArray.length > 0 ? residentsArray : 'None'}</li>
           </ul>
     </article>}
 
@@ -48,7 +56,7 @@ const Card = ({swapiObj, addToFavorites}) => {
 }
 
 Card.propTypes = {
-  
+
 }
 
 export default Card;
