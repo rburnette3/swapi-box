@@ -24,9 +24,9 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  flex-direction: column-reverse;
+  flex-direction: column;
   position: absolute;
-  top: 150px;
+  top: 145px;
   z-index: 100;
   align-items: center;
 }
@@ -43,4 +43,14 @@
   text-align: center;
   margin: 25px 0;
 
+}
+
+@media screen and (max-width: 500px) {
+  .gif-container {
+    top: 250px;
+  }
+
+  .gif {
+    width:95%;
+  }
 }

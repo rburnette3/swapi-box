@@ -17,7 +17,7 @@
   width: 250px;
 }
 .display-card:hover { transition: all .2s ease-in-out; }
-.grow:hover { transform: scale(1.1); }
+.display-card:hover { transform: scale(1.1); }
 
 .card-name {
   font-size: 24px;
@@ -52,4 +52,8 @@ li {
   list-style: none;
   padding: 10px 0;
   text-align: center;
+}
+
+.res-text {
+  font-size: 10px;
 }
