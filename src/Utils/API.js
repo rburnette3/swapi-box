@@ -18,6 +18,7 @@ export default class API {
     })
   }
 
+
   fetchDataFromAPI() {
 
     return this.actualFetch(1).then(result => { // start 0
@@ -37,7 +38,7 @@ export default class API {
         arrayOfSpeciesPromises = this.bigArray.map(item => {
           return fetch(item.species[0])
             .then(result => result.json())
-            .catch(err => console.log('Error with species lookup: ', err))
+            .catch(err => console.log('Error with species lookup: ', err, 'ITEM:', item))
         })
         // console.log('how many species:', arrayOfSpeciesPromises .length);
 

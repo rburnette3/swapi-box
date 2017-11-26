@@ -11,7 +11,6 @@ import Giphy from './loading-giphy.gif';
 export default class App extends Component {
   constructor() {
     super();
-
     this.state = {
       swapiList: [],
       favoriteList: [],
@@ -54,7 +53,6 @@ export default class App extends Component {
       isOnFavs: false
     }, () => {
 
-      let cleanedApiData;
       let apiObject = new API(type);
 
       apiObject.fetchDataFromAPI()

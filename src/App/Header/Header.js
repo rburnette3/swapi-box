@@ -9,7 +9,7 @@ const Header = ({fetchFromAPI, counter, displayFavorites}) => {
     <div>
       <Favorites counter= {counter}
       displayFavorites= {displayFavorites} />
-      <div className='fixed-heading'>
+      <div className='fixed-heading'> 
         <div className='header-btn-container'>
           <button className="header-btn people-btn"
                   onClick={(e) => {fetchFromAPI(e, 'people')}}>People</button>
